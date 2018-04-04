@@ -26,6 +26,37 @@ define OPENSSH_USERS
 	sshd -1 sshd -1 * - - - SSH drop priv user
 endef
 
+define OPENSSH_INSTALL_UNSAFE_CONF
+	sed -i '/^#PermitRootLogin/a PermitRootLogin yes' $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i '/^#PasswordAuthentication/a PasswordAuthentication yes' $(TARGET_DIR)/etc/ssh/sshd_config
+endef
+
+BR2_PACKAGE_OPENSSH_CLIENT_ALIVE_INTERVAL = $(shell expr $(call qstrip,$(BR2_PACKAGE_OPENSSH_SESSION_MAINTENANCE_TIME)) / 3)
+
+define OPENSSH_CUSTOM_CONF
+	cp -a $(@D)/sshd_config $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i '/^#Port/c Port $(call qstrip,$(BR2_PACKAGE_OPENSSH_LISTEN_PORT))' $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i "1,/^#ListenAddress/{s:^#ListenAddress.*$$:ListenAddress $(call qstrip,$(BR2_PACKAGE_OPENSSH_LISTEN_ADDRESS)):}" $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i '/^#LoginGraceTime/c LoginGraceTime $(call qstrip,$(BR2_PACKAGE_OPENSSH_LOGIN_GRACE_TIME))' $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i "/^#ClientAliveInterval/{s:^#ClientAliveInterval.*$$:ClientAliveInterval $(BR2_PACKAGE_OPENSSH_CLIENT_ALIVE_INTERVAL):}" $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i '/^#PermitRootLogin/c PermitRootLogin $(call qstrip,$(BR2_PACKAGE_OPENSSH_PERMIT_ROOT_LOGIN))' $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i '/^#PasswordAuthentication/c PasswordAuthentication $(call qstrip,$(BR2_PACKAGE_OPENSSH_PASSWORD_AUTH))' $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i '/^#MaxAuthTries/c MaxAuthTries $(call qstrip,$(BR2_PACKAGE_OPENSSH_MAX_AUTH_TRIES))' $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i '/^#MaxSessions/c MaxSessions $(call qstrip,$(BR2_PACKAGE_OPENSSH_MAX_SESSIONS))' $(TARGET_DIR)/etc/ssh/sshd_config
+	if [ -n $(BR2_PACKAGE_OPENSSH_DENY_USERS) ];then \
+		sed -i  '$$ a DenyUsers $(BR2_PACKAGE_OPENSSH_DENY_USERS)' $(TARGET_DIR)/etc/ssh/sshd_config;\
+	fi
+	if [ -n $(BR2_PACKAGE_OPENSSH_ALLOW_USERS) ];then \
+		sed -i  '$$ a AllowUsers $(BR2_PACKAGE_OPENSSH_ALLOW_USERS)' $(TARGET_DIR)/etc/ssh/sshd_config; \
+	fi
+endef
+
+ifeq ($(BR2_PACKAGE_OPENSSH_UNSAFE_CONF),y)
+OPENSSH_POST_INSTALL_TARGET_HOOKS += OPENSSH_INSTALL_UNSAFE_CONF
+else
+OPENSSH_POST_INSTALL_TARGET_HOOKS += OPENSSH_CUSTOM_CONF
+endif
+
 ifeq ($(BR2_TOOLCHAIN_SUPPORTS_PIE),)
 OPENSSH_CONF_OPTS += --without-pie
 endif
@@ -59,6 +90,7 @@ OPENSSH_CONF_OPTS += --with-selinux
 else
 OPENSSH_CONF_OPTS += --without-selinux
 endif
+
 
 define OPENSSH_INSTALL_INIT_SYSTEMD
 	$(INSTALL) -D -m 644 package/openssh/sshd.service \

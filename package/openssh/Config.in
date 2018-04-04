@@ -9,3 +9,57 @@ config BR2_PACKAGE_OPENSSH
 	  friends.
 
 	  http://www.openssh.com/
+
+if BR2_PACKAGE_OPENSSH
+
+config BR2_PACKAGE_OPENSSH_UNSAFE_CONF
+	bool "Use a unsafe configure file for test"
+	help
+	  Use a sshd_config that can login in root with password.
+
+if !BR2_PACKAGE_OPENSSH_UNSAFE_CONF
+menu "Custom configuration file"
+config BR2_PACKAGE_OPENSSH_LISTEN_PORT
+	string "listen port"
+	default "22"
+
+config BR2_PACKAGE_OPENSSH_LISTEN_ADDRESS
+	string "listen address"
+	default "0.0.0.0"
+
+config BR2_PACKAGE_OPENSSH_LOGIN_GRACE_TIME
+	string "login grace time"
+	default "2m"
+
+config BR2_PACKAGE_OPENSSH_PERMIT_ROOT_LOGIN
+	string "whether root can log in"
+	default "prohibit-password"
+
+config BR2_PACKAGE_OPENSSH_PASSWORD_AUTH
+	string "Specifies whether password authentication is allowed"
+	default "yes"
+
+config BR2_PACKAGE_OPENSSH_SESSION_MAINTENANCE_TIME
+	string "Session maintenance time in seconds"
+	default "0"
+
+config BR2_PACKAGE_OPENSSH_MAX_AUTH_TRIES
+	string "max auth tries"
+	default "6"
+
+config BR2_PACKAGE_OPENSSH_MAX_SESSIONS
+	string "max sessions"
+	default "10"
+
+config BR2_PACKAGE_OPENSSH_DENY_USERS
+	string "user names that refused to login"
+	default ""
+
+config BR2_PACKAGE_OPENSSH_ALLOW_USERS
+	string "user names that allowed to login"
+	default ""
+
+endmenu
+endif
+
+endif

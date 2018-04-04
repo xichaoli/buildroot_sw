@@ -1,0 +1,8 @@
+config BR2_PACKAGE_SHADOW
+	bool "shadow"
+	depends on BR2_PACKAGE_BUSYBOX_SHOW_OTHERS
+	help
+	  This package contains utilities to add, modify, and delete users and groups;
+	  set and change their passwords; and perform other administrative tasks. 
+
+	  http://pkg-shadow.alioth.debian.org/releases/

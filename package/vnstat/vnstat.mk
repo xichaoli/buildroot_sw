@@ -17,4 +17,11 @@ else
 VNSTAT_CONF_OPTS = --disable-image-output
 endif
 
+define VNSTAT_INSTALL_INIT_SYSV
+	$(INSTALL) -D -m 644 $(@D)/cfg/vnstat.conf \
+		$(TARGET_DIR)/etc
+	$(INSTALL) -D -m 755 $(@D)/examples/init.d/debian/vnstat \
+		$(TARGET_DIR)/etc/init.d
+endef
+
 $(eval $(autotools-package))

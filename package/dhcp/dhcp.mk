@@ -61,6 +61,8 @@ define DHCP_INSTALL_SERVER
 	$(INSTALL) -m 0755 -D $(@D)/server/dhcpd $(TARGET_DIR)/usr/sbin/dhcpd
 	$(INSTALL) -m 0644 -D package/dhcp/dhcpd.conf \
 		$(TARGET_DIR)/etc/dhcp/dhcpd.conf
+	$(INSTALL) -m 0755 -D package/dhcp/S80dhcp-server \
+		$(TARGET_DIR)/etc/init.d/S80dhcp-server
 endef
 endif
 
@@ -70,6 +72,8 @@ define DHCP_INSTALL_RELAY
 	(cd $(TARGET_DIR)/var/lib; ln -snf /tmp dhcp)
 	$(INSTALL) -m 0755 -D $(DHCP_DIR)/relay/dhcrelay \
 		$(TARGET_DIR)/usr/sbin/dhcrelay
+	$(INSTALL) -m 0755 -D package/dhcp/S80dhcp-relay \
+		$(TARGET_DIR)/etc/init.d/S80dhcp-relay
 endef
 endif
 
@@ -85,14 +89,6 @@ define DHCP_INSTALL_CLIENT
 		$(TARGET_DIR)/sbin/dhclient-script
 endef
 endif
-
-# Options don't matter, scripts won't start if binaries aren't there
-define DHCP_INSTALL_INIT_SYSV
-	$(INSTALL) -m 0755 -D package/dhcp/S80dhcp-server \
-		$(TARGET_DIR)/etc/init.d/S80dhcp-server
-	$(INSTALL) -m 0755 -D package/dhcp/S80dhcp-relay \
-		$(TARGET_DIR)/etc/init.d/S80dhcp-relay
-endef
 
 ifeq ($(BR2_PACKAGE_DHCP_SERVER),y)
 define DHCP_INSTALL_INIT_SYSTEMD

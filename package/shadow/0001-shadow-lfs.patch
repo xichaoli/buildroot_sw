@@ -1,0 +1,309 @@
+diff -Nur shadow-4.5-orig/etc/login.defs shadow-4.5/etc/login.defs
+--- shadow-4.5-orig/etc/login.defs	2016-02-18 09:04:01.000000000 +0800
++++ shadow-4.5/etc/login.defs	2018-04-08 10:06:26.448797962 +0800
+@@ -118,7 +118,7 @@
+ #   Directory where mailboxes reside, _or_ name of file, relative to the
+ #   home directory.  If you _do_ define both, MAIL_DIR takes precedence.
+ #
+-MAIL_DIR	/var/spool/mail
++MAIL_DIR	/var/mail
+ #MAIL_FILE	.mail
+ 
+ #
+@@ -317,7 +317,7 @@
+ # Note: If you use PAM, it is recommended to use a value consistent with
+ # the PAM modules configuration.
+ #
+-#ENCRYPT_METHOD DES
++ENCRYPT_METHOD SHA512
+ 
+ #
+ # Only works if ENCRYPT_METHOD is set to SHA256 or SHA512.
+diff -Nur shadow-4.5-orig/etc/useradd shadow-4.5/etc/useradd
+--- shadow-4.5-orig/etc/useradd	2014-09-01 22:36:40.000000000 +0800
++++ shadow-4.5/etc/useradd	2018-04-08 10:06:26.448797962 +0800
+@@ -1,5 +1,5 @@
+ # useradd defaults file
+-GROUP=1000
++GROUP=999
+ HOME=/home
+ INACTIVE=-1
+ EXPIRE=
+diff -Nur shadow-4.5-orig/man/cs/Makefile.in shadow-4.5/man/cs/Makefile.in
+--- shadow-4.5-orig/man/cs/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/cs/Makefile.in	2018-04-08 10:06:26.368789316 +0800
+@@ -313,12 +313,12 @@
+ 	man8/groupadd.8 \
+ 	man8/groupdel.8 \
+ 	man8/groupmod.8 \
+-	man1/groups.1 \
++	man1/ \
+ 	man8/grpck.8 \
+ 	man5/gshadow.5 \
+ 	man8/lastlog.8 \
+ 	man8/nologin.8 \
+-	man5/passwd.5 \
++	man5/ \
+ 	man5/shadow.5 \
+ 	man1/su.1 \
+ 	man8/vipw.8
+diff -Nur shadow-4.5-orig/man/da/Makefile.in shadow-4.5/man/da/Makefile.in
+--- shadow-4.5-orig/man/da/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/da/Makefile.in	2018-04-08 10:06:26.440797097 +0800
+@@ -310,7 +310,7 @@
+ top_srcdir = @top_srcdir@
+ 
+ # 2012.01.28 - activate manpages with more than 50% translated messages
+-man_MANS = man1/chfn.1 man8/groupdel.8 man1/groups.1 man5/gshadow.5 \
++man_MANS = man1/chfn.1 man8/groupdel.8 man1/ man5/gshadow.5 \
+ 	man8/logoutd.8 man1/newgrp.1 man8/nologin.8 man1/sg.1 \
+ 	man8/vigr.8 man8/vipw.8 $(am__append_1)
+ man_nopam = 
+diff -Nur shadow-4.5-orig/man/de/Makefile.in shadow-4.5/man/de/Makefile.in
+--- shadow-4.5-orig/man/de/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/de/Makefile.in	2018-04-08 10:06:26.388791477 +0800
+@@ -311,11 +311,11 @@
+ top_srcdir = @top_srcdir@
+ man_MANS = man1/chage.1 man1/chfn.1 man8/chgpasswd.8 man8/chpasswd.8 \
+ 	man1/chsh.1 man1/expiry.1 man5/faillog.5 man8/faillog.8 \
+-	man3/getspnam.3 man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man3/ man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man8/grpconv.8 man8/grpunconv.8 man5/gshadow.5 man8/lastlog.8 \
+ 	man1/login.1 man5/login.defs.5 man8/logoutd.8 man1/newgrp.1 \
+-	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/passwd.5 \
++	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/ \
+ 	man8/pwck.8 man8/pwconv.8 man8/pwunconv.8 man1/sg.1 \
+ 	man3/shadow.3 man5/shadow.5 man1/su.1 man5/suauth.5 \
+ 	man8/useradd.8 man8/userdel.8 man8/usermod.8 man8/vigr.8 \
+diff -Nur shadow-4.5-orig/man/es/Makefile.in shadow-4.5/man/es/Makefile.in
+--- shadow-4.5-orig/man/es/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/es/Makefile.in	2018-04-08 10:06:26.372789748 +0800
+@@ -279,7 +279,7 @@
+ #	man1/login.1 \
+ #	man1/newgrp.1 \
+ #	man1/passwd.1 \
+-#	man5/passwd.5 \
++#	man5/ \
+ #	man1/su.1 \
+ #	man8/vigr.8 \
+ #	man8/vipw.8
+diff -Nur shadow-4.5-orig/man/fr/Makefile.in shadow-4.5/man/fr/Makefile.in
+--- shadow-4.5-orig/man/fr/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/fr/Makefile.in	2018-04-08 10:06:26.428795800 +0800
+@@ -313,11 +313,11 @@
+ top_srcdir = @top_srcdir@
+ man_MANS = man1/chage.1 man1/chfn.1 man8/chgpasswd.8 man8/chpasswd.8 \
+ 	man1/chsh.1 man1/expiry.1 man5/faillog.5 man8/faillog.8 \
+-	man3/getspnam.3 man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man3/ man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man8/grpconv.8 man8/grpunconv.8 man5/gshadow.5 man8/lastlog.8 \
+ 	man1/login.1 man5/login.defs.5 man8/logoutd.8 man1/newgrp.1 \
+-	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/passwd.5 \
++	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/ \
+ 	man8/pwck.8 man8/pwconv.8 man8/pwunconv.8 man1/sg.1 \
+ 	man3/shadow.3 man5/shadow.5 man1/su.1 man5/suauth.5 \
+ 	man8/useradd.8 man8/userdel.8 man8/usermod.8 man8/vigr.8 \
+diff -Nur shadow-4.5-orig/man/hu/Makefile.in shadow-4.5/man/hu/Makefile.in
+--- shadow-4.5-orig/man/hu/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/hu/Makefile.in	2018-04-08 10:06:26.376790180 +0800
+@@ -308,12 +308,12 @@
+ man_MANS = \
+ 	man1/chsh.1 \
+ 	man1/gpasswd.1 \
+-	man1/groups.1 \
++	man1/ \
+ 	man8/lastlog.8 \
+ 	man1/login.1 \
+ 	man1/newgrp.1 \
+ 	man1/passwd.1 \
+-	man5/passwd.5 \
++	man5/ \
+ 	man1/sg.1 \
+ 	man1/su.1
+ 
+diff -Nur shadow-4.5-orig/man/it/Makefile.in shadow-4.5/man/it/Makefile.in
+--- shadow-4.5-orig/man/it/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/it/Makefile.in	2018-04-08 10:06:26.356788019 +0800
+@@ -311,11 +311,11 @@
+ top_srcdir = @top_srcdir@
+ man_MANS = man1/chage.1 man1/chfn.1 man8/chgpasswd.8 man8/chpasswd.8 \
+ 	man1/chsh.1 man1/expiry.1 man5/faillog.5 man8/faillog.8 \
+-	man3/getspnam.3 man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man3/ man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man8/grpconv.8 man8/grpunconv.8 man5/gshadow.5 man8/lastlog.8 \
+ 	man1/login.1 man5/login.defs.5 man8/logoutd.8 man1/newgrp.1 \
+-	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/passwd.5 \
++	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/ \
+ 	man8/pwck.8 man8/pwconv.8 man8/pwunconv.8 man1/sg.1 \
+ 	man3/shadow.3 man5/shadow.5 man1/su.1 man5/suauth.5 \
+ 	man8/useradd.8 man8/userdel.8 man8/usermod.8 man8/vigr.8 \
+diff -Nur shadow-4.5-orig/man/ja/Makefile.in shadow-4.5/man/ja/Makefile.in
+--- shadow-4.5-orig/man/ja/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/ja/Makefile.in	2018-04-08 10:06:26.380790613 +0800
+@@ -309,10 +309,10 @@
+ top_srcdir = @top_srcdir@
+ man_MANS = man1/chage.1 man1/chfn.1 man8/chpasswd.8 man1/chsh.1 \
+ 	man1/expiry.1 man5/faillog.5 man8/faillog.8 man1/gpasswd.1 \
+-	man8/groupadd.8 man8/groupdel.8 man8/groupmod.8 man1/groups.1 \
++	man8/groupadd.8 man8/groupdel.8 man8/groupmod.8 man1/ \
+ 	man8/grpck.8 man8/grpconv.8 man8/grpunconv.8 man8/lastlog.8 \
+ 	man1/login.1 man5/login.defs.5 man8/logoutd.8 man1/newgrp.1 \
+-	man8/newusers.8 man1/passwd.1 man5/passwd.5 man8/pwck.8 \
++	man8/newusers.8 man1/passwd.1 man5/ man8/pwck.8 \
+ 	man8/pwconv.8 man8/pwunconv.8 man1/sg.1 man5/shadow.5 \
+ 	man1/su.1 man5/suauth.5 man8/useradd.8 man8/userdel.8 \
+ 	man8/usermod.8 man8/vigr.8 man8/vipw.8 $(am__append_1)
+diff -Nur shadow-4.5-orig/man/ko/Makefile.in shadow-4.5/man/ko/Makefile.in
+--- shadow-4.5-orig/man/ko/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/ko/Makefile.in	2018-04-08 10:06:26.400792774 +0800
+@@ -308,9 +308,9 @@
+ man_MANS = \
+ 	man1/chfn.1 \
+ 	man1/chsh.1 \
+-	man1/groups.1 \
++	man1/ \
+ 	man1/login.1 \
+-	man5/passwd.5 \
++	man5/ \
+ 	man1/su.1 \
+ 	man8/vigr.8 \
+ 	man8/vipw.8
+diff -Nur shadow-4.5-orig/man/Makefile.in shadow-4.5/man/Makefile.in
+--- shadow-4.5-orig/man/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/Makefile.in	2018-04-08 10:06:26.404793207 +0800
+@@ -378,11 +378,11 @@
+ @USE_NLS_TRUE@SUBDIRS = po cs da de es fi fr hu id it ja ko pl pt_BR ru sv tr zh_CN zh_TW
+ man_MANS = man1/chage.1 man1/chfn.1 man8/chgpasswd.8 man8/chpasswd.8 \
+ 	man1/chsh.1 man1/expiry.1 man5/faillog.5 man8/faillog.8 \
+-	man3/getspnam.3 man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man3/ man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man8/grpconv.8 man8/grpunconv.8 man5/gshadow.5 man8/lastlog.8 \
+ 	man1/login.1 man5/login.defs.5 man8/logoutd.8 man1/newgrp.1 \
+-	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/passwd.5 \
++	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/ \
+ 	man8/pwck.8 man8/pwconv.8 man8/pwunconv.8 man1/sg.1 \
+ 	man3/shadow.3 man5/shadow.5 man1/su.1 man5/suauth.5 \
+ 	man8/useradd.8 man8/userdel.8 man8/usermod.8 man8/vigr.8 \
+diff -Nur shadow-4.5-orig/man/pl/Makefile.in shadow-4.5/man/pl/Makefile.in
+--- shadow-4.5-orig/man/pl/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/pl/Makefile.in	2018-04-08 10:06:26.380790613 +0800
+@@ -312,8 +312,8 @@
+ 
+ # 2012.01.28 - activate manpages with more than 50% translated messages
+ man_MANS = man1/chage.1 man1/chsh.1 man1/expiry.1 man5/faillog.5 \
+-	man8/faillog.8 man3/getspnam.3 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man8/faillog.8 man3/ man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man8/lastlog.8 man8/logoutd.8 man1/newgrp.1 man1/sg.1 \
+ 	man3/shadow.3 man8/userdel.8 man8/usermod.8 man8/vigr.8 \
+ 	man8/vipw.8 $(am__append_1)
+diff -Nur shadow-4.5-orig/man/pt_BR/Makefile.in shadow-4.5/man/pt_BR/Makefile.in
+--- shadow-4.5-orig/man/pt_BR/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/pt_BR/Makefile.in	2018-04-08 10:06:26.420794935 +0800
+@@ -310,7 +310,7 @@
+ 	man8/groupadd.8 \
+ 	man8/groupdel.8 \
+ 	man8/groupmod.8 \
+-	man5/passwd.5 \
++	man5/ \
+ 	man5/shadow.5
+ 
+ EXTRA_DIST = $(man_MANS)
+diff -Nur shadow-4.5-orig/man/ru/Makefile.in shadow-4.5/man/ru/Makefile.in
+--- shadow-4.5-orig/man/ru/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/ru/Makefile.in	2018-04-08 10:06:26.396792341 +0800
+@@ -311,11 +311,11 @@
+ top_srcdir = @top_srcdir@
+ man_MANS = man1/chage.1 man1/chfn.1 man8/chgpasswd.8 man8/chpasswd.8 \
+ 	man1/chsh.1 man1/expiry.1 man5/faillog.5 man8/faillog.8 \
+-	man3/getspnam.3 man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man3/ man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man8/grpconv.8 man8/grpunconv.8 man5/gshadow.5 man8/lastlog.8 \
+ 	man1/login.1 man5/login.defs.5 man8/logoutd.8 man1/newgrp.1 \
+-	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/passwd.5 \
++	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/ \
+ 	man8/pwck.8 man8/pwconv.8 man8/pwunconv.8 man1/sg.1 \
+ 	man3/shadow.3 man5/shadow.5 man1/su.1 man5/suauth.5 \
+ 	man8/useradd.8 man8/userdel.8 man8/usermod.8 man8/vigr.8 \
+diff -Nur shadow-4.5-orig/man/sv/Makefile.in shadow-4.5/man/sv/Makefile.in
+--- shadow-4.5-orig/man/sv/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/sv/Makefile.in	2018-04-08 10:06:26.364788883 +0800
+@@ -312,10 +312,10 @@
+ 
+ # 2012.01.28 - activate manpages with more than 50% translated messages
+ man_MANS = man1/chage.1 man1/chsh.1 man1/expiry.1 man5/faillog.5 \
+-	man8/faillog.8 man3/getspnam.3 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man8/faillog.8 man3/ man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man5/gshadow.5 man8/lastlog.8 man8/logoutd.8 man1/newgrp.1 \
+-	man8/nologin.8 man1/passwd.1 man5/passwd.5 man8/pwck.8 \
++	man8/nologin.8 man1/passwd.1 man5/ man8/pwck.8 \
+ 	man1/sg.1 man3/shadow.3 man5/suauth.5 man8/userdel.8 \
+ 	man8/vigr.8 man8/vipw.8 $(am__append_1)
+ man_nopam = \
+diff -Nur shadow-4.5-orig/man/tr/Makefile.in shadow-4.5/man/tr/Makefile.in
+--- shadow-4.5-orig/man/tr/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/tr/Makefile.in	2018-04-08 10:06:26.432796232 +0800
+@@ -313,7 +313,7 @@
+ 	man8/groupmod.8 \
+ 	man1/login.1 \
+ 	man1/passwd.1 \
+-	man5/passwd.5 \
++	man5/ \
+ 	man5/shadow.5 \
+ 	man1/su.1 \
+ 	man8/useradd.8 \
+diff -Nur shadow-4.5-orig/man/zh_CN/Makefile.in shadow-4.5/man/zh_CN/Makefile.in
+--- shadow-4.5-orig/man/zh_CN/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/zh_CN/Makefile.in	2018-04-08 10:06:26.436796665 +0800
+@@ -311,11 +311,11 @@
+ top_srcdir = @top_srcdir@
+ man_MANS = man1/chage.1 man1/chfn.1 man8/chgpasswd.8 man8/chpasswd.8 \
+ 	man1/chsh.1 man1/expiry.1 man5/faillog.5 man8/faillog.8 \
+-	man3/getspnam.3 man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
+-	man8/groupmems.8 man8/groupmod.8 man1/groups.1 man8/grpck.8 \
++	man3/ man1/gpasswd.1 man8/groupadd.8 man8/groupdel.8 \
++	man8/groupmems.8 man8/groupmod.8 man1/ man8/grpck.8 \
+ 	man8/grpconv.8 man8/grpunconv.8 man5/gshadow.5 man8/lastlog.8 \
+ 	man1/login.1 man5/login.defs.5 man8/logoutd.8 man1/newgrp.1 \
+-	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/passwd.5 \
++	man8/newusers.8 man8/nologin.8 man1/passwd.1 man5/ \
+ 	man8/pwck.8 man8/pwconv.8 man8/pwunconv.8 man1/sg.1 \
+ 	man3/shadow.3 man5/shadow.5 man1/su.1 man5/suauth.5 \
+ 	man8/useradd.8 man8/userdel.8 man8/usermod.8 man8/vigr.8 \
+diff -Nur shadow-4.5-orig/man/zh_TW/Makefile.in shadow-4.5/man/zh_TW/Makefile.in
+--- shadow-4.5-orig/man/zh_TW/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/man/zh_TW/Makefile.in	2018-04-08 10:06:26.412794071 +0800
+@@ -315,7 +315,7 @@
+ 	man8/groupadd.8 \
+ 	man8/groupdel.8 \
+ 	man8/groupmod.8 \
+-	man5/passwd.5 \
++	man5/ \
+ 	man1/su.1 \
+ 	man8/useradd.8 \
+ 	man8/userdel.8 \
+diff -Nur shadow-4.5-orig/src/Makefile.in shadow-4.5/src/Makefile.in
+--- shadow-4.5-orig/src/Makefile.in	2017-05-18 03:33:48.000000000 +0800
++++ shadow-4.5/src/Makefile.in	2018-04-08 10:06:25.956744790 +0800
+@@ -88,7 +88,7 @@
+ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+-bin_PROGRAMS = groups$(EXEEXT) login$(EXEEXT) su$(EXEEXT)
++bin_PROGRAMS = login$(EXEEXT) su$(EXEEXT)
+ sbin_PROGRAMS = nologin$(EXEEXT)
+ ubin_PROGRAMS = faillog$(EXEEXT) lastlog$(EXEEXT) chage$(EXEEXT) \
+ 	chfn$(EXEEXT) chsh$(EXEEXT) expiry$(EXEEXT) gpasswd$(EXEEXT) \

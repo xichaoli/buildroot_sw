@@ -1,0 +1,64 @@
+#!/bin/sh
+
+swap_partition=sda2
+conf_partition=sda3
+data_partition=sda5
+log_partition=sda6
+
+case "$1" in
+start)
+	printf "Mounting swap partition ..."
+	swapon ${swap_partition}
+	printf "Mounting writeable partition ..."
+	############################# /etc ############################
+	mount /dev/${conf_partition} /etc
+	cd /etc
+	if [ ! -f .part_init_done ]
+	then
+		echo "############ The ${conf_partition} is empty ##############"
+		rsync -a --delete /root/.backups/etc/ /etc/
+		touch /etc/.part_init_done
+		sync
+	fi
+	
+	############################# /var ############################
+	mount /dev/${data_partition} /var
+	cd /var
+	if [ ! -f .part_init_done ]
+	then
+		echo "###### The ${data_partition} is empty ######"
+		rsync -a --delete /root/.backups/var/ /var/
+		touch /var/.part_init_done
+		sync
+	fi
+	
+	############################# /var/log ############################
+	mount /dev/${log_partition} /var/log
+	cd /var/log
+	if [ ! -f .part_init_done ]
+	then
+		echo "###### The ${log_partition} is empty ######"
+		rsync -a --delete /root/.backups/log/ /var/log/
+		touch /var/log/.part_init_done
+		sync
+	fi
+    echo "Mounting partition done"
+    ;;
+stop)
+	############################# /var/log ############################
+	umount /var/log	
+	#############################   /var   ############################
+	umount /var
+	#############################   /etc   ############################
+	umount /etc
+	#############################   swap   ############################
+	swapoff ${swap_partition}
+    ;;
+
+*)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0

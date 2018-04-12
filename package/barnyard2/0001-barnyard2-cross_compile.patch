@@ -1,0 +1,17 @@
+diff -Nur barnyard2-master-orig/configure.ac barnyard2-master/configure.ac
+--- barnyard2-master-orig/configure.ac	2016-04-12 18:05:11.000000000 -0700
++++ barnyard2-master/configure.ac	2018-04-11 06:59:31.621535211 -0700
+@@ -76,7 +76,7 @@
+     # libpcap doesn't even LOOK at the timeout you give it under Linux
+     AC_DEFINE([PCAP_TIMEOUT_IGNORED],[1],[Define if pcap timeout is ignored])
+     AC_SUBST(extra_incl)
+-    extra_incl="-I/usr/include/pcap"
++    extra_incl="-I${STATING_DIR}/usr/include/pcap"
+     ;;
+   *-hpux10*|*-hpux11*)
+     AC_DEFINE([HPUX],[1],[Define if HP-UX 10 or 11])
+diff -Nur barnyard2-master-orig/cross_compile_config.cache barnyard2-master/cross_compile_config.cache
+--- barnyard2-master-orig/cross_compile_config.cache	1969-12-31 16:00:00.000000000 -0800
++++ barnyard2-master/cross_compile_config.cache	2018-04-11 06:59:56.349755276 -0700
+@@ -0,0 +1 @@
++cross_compiling="no"

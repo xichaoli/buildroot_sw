@@ -1,0 +1,6 @@
+config BR2_PACKAGE_SNORT
+	bool "snort"
+	help
+	  Snort is an open source network intrusion detection and prevention system.
+	  It is capable of performing real-time traffic analysis, alerting, blocking 
+	  and packet logging on IP networks.

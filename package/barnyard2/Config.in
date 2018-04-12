@@ -1,0 +1,7 @@
+config BR2_PACKAGE_BARNYARD2
+	bool "barnyard2"
+	help
+	  Barnyard2 is an open source interpreter for Snort unified2 binary output files.
+	  Its primary use is allowing Snort to write to disk in an efficient manner and 
+	  leaving the task of parsing binary data into various formats to a separate process 
+	  that will not cause Snort to miss network traffic.

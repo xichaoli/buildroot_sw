@@ -1,0 +1,17 @@
+diff -Nur snort-2.9.11.1-orig/configure.in snort-2.9.11.1/configure.in
+--- snort-2.9.11.1-orig/configure.in	2017-11-27 22:37:29.000000000 -0800
++++ snort-2.9.11.1/configure.in	2018-04-11 06:24:08.454245857 -0700
+@@ -71,7 +71,7 @@
+     linux="yes"
+     AC_DEFINE([LINUX],[1],[Define if Linux])
+     AC_SUBST(extra_incl)
+-    extra_incl="-I/usr/include/pcap"
++    extra_incl="-I${STAGING_DIR}/usr/include/pcap"
+     ;;
+   *-hpux10*|*-hpux11*)
+     AC_DEFINE([HPUX],[1],[Define if HP-UX 10 or 11])
+diff -Nur snort-2.9.11.1-orig/cross_compile_config.cache snort-2.9.11.1/cross_compile_config.cache
+--- snort-2.9.11.1-orig/cross_compile_config.cache	1969-12-31 16:00:00.000000000 -0800
++++ snort-2.9.11.1/cross_compile_config.cache	2018-04-11 06:25:22.468955899 -0700
+@@ -0,0 +1 @@
++cross_compiling="no"

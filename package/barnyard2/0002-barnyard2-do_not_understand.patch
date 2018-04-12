@@ -1,0 +1,12 @@
+diff -Nur barnyard2-master-orig/src/decode.c barnyard2-master/src/decode.c
+--- barnyard2-master-orig/src/decode.c	2016-04-12 18:05:11.000000000 -0700
++++ barnyard2-master/src/decode.c	2018-04-12 06:40:58.878932713 -0700
+@@ -638,7 +638,7 @@
+     int iRet = 0;
+ 
+     pc.mpls++;
+-    UpdateMPLSStats(&sfBase, len, Active_PacketWasDropped());
++    //UpdateMPLSStats(&sfBase, len, Active_PacketWasDropped());
+     tmpMplsHdr = (uint32_t *) pkt;
+     p->mpls = NULL;
+ 

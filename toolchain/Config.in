@@ -52,10 +52,17 @@ config BR2_TOOLCHAIN_EXTERNAL
 	  toolchain. Buildroot can either download automatically a
 	  toolchain, or use an already installed toolchain.
 
+config BR2_TOOLCHAIN_NATIVE
+	bool "Native toolchain"
+	help
+	  For the sw_64 platform because there is no cross-compilation 
+	  tool chain available for this platform.
+
 endchoice
 
 source "toolchain/toolchain-buildroot/Config.in"
 source "toolchain/toolchain-external/Config.in"
+source "toolchain/toolchain-native/Config.in"
 source "toolchain/toolchain-common.in"
 
 endmenu

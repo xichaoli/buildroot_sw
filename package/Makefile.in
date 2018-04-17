@@ -195,8 +195,10 @@ endif
 
 ifeq ($(BR2_TOOLCHAIN_BUILDROOT),y)
 TARGET_CROSS = $(HOST_DIR)/bin/$(GNU_TARGET_NAME)-
-else
+else ifeq ($(BR2_TOOLCHAIN_EXTERNAL),y)
 TARGET_CROSS = $(HOST_DIR)/bin/$(TOOLCHAIN_EXTERNAL_PREFIX)-
+else
+TARGET_CROSS = /usr/bin/
 endif
 
 # Define TARGET_xx variables for all common binutils/gcc

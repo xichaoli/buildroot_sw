@@ -915,6 +915,10 @@ EOF
 	UNAME_MACHINE=aarch64_be
 	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
 	exit ;;
+    sw_64:Linux:*:*)
+	UNAME_MACHINE=sw_64
+	echo ${UNAME_MACHINE}-linux-${LIBC}
+	exit ;;
     alpha:Linux:*:*)
 	case `sed -n '/^cpu model/s/^.*: \(.*\)/\1/p' < /proc/cpuinfo` in
 	  EV5)   UNAME_MACHINE=alphaev5 ;;

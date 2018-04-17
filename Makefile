@@ -352,6 +352,7 @@ export HOSTARCH := $(shell LC_ALL=C $(HOSTCC_NOCCACHE) -v 2>&1 | \
 	    -e 's/sa110/arm/' \
 	    -e 's/ppc64/powerpc64/' \
 	    -e 's/ppc/powerpc/' \
+	    -e 's/sw*/sw_64/' \
 	    -e 's/macppc/powerpc/' \
 	    -e 's/sh.*/sh/' )
 

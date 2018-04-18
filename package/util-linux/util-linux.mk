@@ -22,7 +22,10 @@ UTIL_LINUX_CONF_ENV = scanf_cv_type_modifier=no \
 	$(if $(BR2_TOOLCHAIN_USES_UCLIBC),ac_cv_header_sys_timex_h=no)
 UTIL_LINUX_CONF_OPTS += \
 	--disable-rpath \
-	--disable-makeinstall-chown
+	--disable-makeinstall-chown \
+	--with-sysroot=$(STAGING_DIR)/usr \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
 UTIL_LINUX_LIBS = $(TARGET_NLS_LIBS)
 
 # system depends on util-linux so we enable systemd support

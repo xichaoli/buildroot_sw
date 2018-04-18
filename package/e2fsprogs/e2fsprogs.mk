@@ -52,7 +52,10 @@ E2FSPROGS_CONF_OPTS = \
 	--disable-e2initrd-helper \
 	--disable-testio-debug \
 	--disable-rpath \
-	--enable-symlink-install
+	--enable-symlink-install \
+	--with-sysroot=$(STAGING_DIR)/usr \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
 
 ifeq ($(BR2_PACKAGE_E2FSPROGS_FUSE2FS),y)
 E2FSPROGS_CONF_OPTS += --enable-fuse2fs

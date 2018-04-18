@@ -1,0 +1,34 @@
+diff -Nur openvas-libraries-8.0.8-orig/base/CMakeLists.txt openvas-libraries-8.0.8/base/CMakeLists.txt
+--- openvas-libraries-8.0.8-orig/base/CMakeLists.txt	2015-08-03 18:14:33.000000000 +0800
++++ openvas-libraries-8.0.8/base/CMakeLists.txt	2017-09-30 07:36:18.595433915 +0800
+@@ -73,6 +73,7 @@
+       assuan libgpg-error ole32 ws2_32 ffi z shlwapi dnsapi winmm)
+     target_link_libraries (openvas_base_shared openvas_omp_shared ${W32LIBS})
+   else (MINGW)
++	set (GPGME_LDFLAGS "-L/home/user/buildroot/output/staging/usr/lib -lgpgme")
+     target_link_libraries (openvas_base_shared openvas_omp_shared ${GLIB_LDFLAGS} ${GIO_LDFLAGS} ${GNUTLS_LDFLAGS} ${ZLIB_LDFLAGS} ${GPGME_LDFLAGS})
+   endif (MINGW)
+ endif (BUILD_SHARED)
+diff -Nur openvas-libraries-8.0.8-orig/misc/CMakeLists.txt openvas-libraries-8.0.8/misc/CMakeLists.txt
+--- openvas-libraries-8.0.8-orig/misc/CMakeLists.txt	2015-12-08 15:07:22.000000000 +0800
++++ openvas-libraries-8.0.8/misc/CMakeLists.txt	2017-09-30 07:37:34.602843102 +0800
+@@ -136,6 +136,7 @@
+        gcrypt gpgme assuan libgpg-error ole32 ws2_32 ffi z shlwapi dnsapi winmm)
+     target_link_libraries (openvas_misc_shared openvas_base_shared ${W32LIBS})
+   else (MINGW)
++    set (PCAP_LDFLAGS "-L/home/user/buildroot/output/staging/usr/lib -lpcap")
+     target_link_libraries (openvas_misc_shared ${GNUTLS_LDFLAGS} openvas_base_shared ${UUID_LDFLAGS}
+                            ${PCAP_LDFLAGS} ${LIBSSH_LDFLAGS} ${LDAP_LDFLAGS}
+                            ${REDIS_LDFLAGS} ${GCRYPT_LDFLAGS} ${RADIUS_LDFLAGS})
+diff -Nur openvas-libraries-8.0.8-orig/nasl/CMakeLists.txt openvas-libraries-8.0.8/nasl/CMakeLists.txt
+--- openvas-libraries-8.0.8-orig/nasl/CMakeLists.txt	2015-08-03 18:14:31.000000000 +0800
++++ openvas-libraries-8.0.8/nasl/CMakeLists.txt	2017-09-30 07:36:18.595433915 +0800
+@@ -124,6 +124,8 @@
+   set_target_properties (openvas_nasl_shared PROPERTIES VERSION "${CPACK_PACKAGE_VERSION}")
+   set_target_properties (openvas_nasl_shared PROPERTIES PUBLIC_HEADER "${HEADERS}")
+ # line bellow is needed so it also works with no-undefined which is e.g. used by Mandriva
++	set (GPGME_LDFLAGS "-L/home/user/buildroot/output/staging/usr/lib -lgpgme")
++	set (KSBA_LDFLAGS "-L/home/user/buildroot/output/staging/usr/lib -lksba")
+   target_link_libraries (openvas_nasl_shared openvas_base_shared openvas_misc_shared
+                          ${GLIB_LDFLAGS} ${GPGME_LDFLAGS} m
+                          ${OPENVAS_WMICLIENT_LDFLAGS} ${OPENVAS_WINCMD_LDFLAGS}

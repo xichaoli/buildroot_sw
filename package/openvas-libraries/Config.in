@@ -1,0 +1,13 @@
+config BR2_PACKAGE_OPENVAS_LIBRARIES
+    select BR2_PACKAGE_LIBGLIB2
+    select BR2_PACKAGE_LIBGCRYPT
+    select BR2_PACKAGE_LIBGPGME
+    select BR2_PACKAGE_LIBPCAP
+    select BR2_PACKAGE_LIBKSBA
+    select BR2_PACKAGE_LIBSSH
+    select BR2_PACKAGE_GNUTLS
+	select BR2_PACKAGE_HIREDIS
+    select BR2_PACKAGE_UTIL_LINUX
+	bool "openvas-libraries"
+	help
+	  This is the libraries module for the Open Vulnerability Assessment System.

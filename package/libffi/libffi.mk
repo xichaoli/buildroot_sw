@@ -9,7 +9,7 @@ LIBFFI_SITE = ftp://sourceware.org/pub/libffi
 LIBFFI_LICENSE = MIT
 LIBFFI_LICENSE_FILES = LICENSE
 LIBFFI_INSTALL_STAGING = YES
-LIBFFI_AUTORECONF = YES
+LIBFFI_AUTORECONF = NO
 
 # Move the headers to the usual location, and adjust the .pc file
 # accordingly.

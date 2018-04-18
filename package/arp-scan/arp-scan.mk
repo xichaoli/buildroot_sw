@@ -13,6 +13,11 @@ ARP_SCAN_DEPENDENCIES = libpcap
 # 0001-configure-try-linking-to-detect-stack-protector-supp.patch touches acinclude.m4
 ARP_SCAN_AUTORECONF = YES
 
+ARP_SCAN_CONF_OPTS = \
+	--with-sysroot=$(STAGING_DIR)/usr \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
+
 ifeq ($(BR2_STATIC_LIBS),y)
 ARP_SCAN_CONF_OPTS = LIBS="`$(STAGING_DIR)/usr/bin/pcap-config --static --additional-libs`"
 endif

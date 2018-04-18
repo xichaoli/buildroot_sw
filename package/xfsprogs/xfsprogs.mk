@@ -18,7 +18,10 @@ XFSPROGS_CONF_OPTS = \
 	--enable-gettext=no \
 	INSTALL_USER=root \
 	INSTALL_GROUP=root \
-	--enable-static
+	--enable-static \
+	--with-sysroot=$(STAGING_DIR)/usr \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
 
 XFSPROGS_INSTALL_TARGET_OPTS = DIST_ROOT=$(TARGET_DIR) install
 

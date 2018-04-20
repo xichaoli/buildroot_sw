@@ -1,0 +1,11 @@
+diff -Nur openvas-scanner-5.0.7-orig/src/CMakeLists.txt openvas-scanner-5.0.7/src/CMakeLists.txt
+--- openvas-scanner-5.0.7-orig/src/CMakeLists.txt	2015-08-03 18:14:45.000000000 +0800
++++ openvas-scanner-5.0.7/src/CMakeLists.txt	2016-11-23 13:57:58.148099266 +0800
+@@ -112,6 +112,7 @@
+   add_definitions (-DNVT_TIMEOUT=${NVT_TIMEOUT})
+ endif (NVT_TIMEOUT)
+ 
++set (GCRYPT_LDFLAGS "-L/home/user/buildroot/output/staging/usr/lib -lgcrypt")
+ target_link_libraries (openvassd ${LIBOPENVAS_NASL_LDFLAGS}
+                        ${LIBOPENVAS_BASE_LDFLAGS} ${LIBOPENVAS_MISC_LDFLAGS}
+                        ${LIBOPENVAS_OMP_LDFLAGS} ${GLIB_LDFLAGS}

@@ -1,0 +1,5 @@
+config BR2_PACKAGE_OPENVAS_CLI
+    select BR2_PACKAGE_MANAGER
+	bool "openvas-cli"
+	help
+	  This is the client module for the Open Vulnerability Assessment System.

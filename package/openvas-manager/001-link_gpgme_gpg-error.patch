@@ -1,0 +1,12 @@
+diff -Nur openvas-manager-6.0.9-orig/src/CMakeLists.txt openvas-manager-6.0.9/src/CMakeLists.txt
+--- openvas-manager-6.0.9-orig/src/CMakeLists.txt	2015-12-08 15:09:32.000000000 +0800
++++ openvas-manager-6.0.9/src/CMakeLists.txt	2017-10-31 15:34:18.090648186 +0800
+@@ -64,7 +64,7 @@
+ add_library (otp STATIC otp.c)
+ 
+ ## Program
+-
++set (GPGME_LDFLAGS "-L/home/user/buildroot/output/staging/usr/lib -lgpgme -lgpg-error")
+ add_executable (openvasmd openvasmd.c ompd.c)
+ target_link_libraries (openvasmd ovas-mngr-comm omp otp manage ${GNUTLS_LDFLAGS} ${GPGME_LDFLAGS} ${GCRYPT_LDFLAGS} ${CMAKE_THREAD_LIBS_INIT})
+ 

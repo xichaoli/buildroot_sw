@@ -55,6 +55,7 @@ config BR2_TOOLCHAIN_EXTERNAL
 config BR2_TOOLCHAIN_NATIVE
 	bool "Native toolchain"
 	select BR2_TOOLCHAIN_USES_GLIBC
+	select BR2_TOOLCHAIN_HAS_ATOMIC
 	help
 	  For the sw_64 platform because there is no cross-compilation 
 	  tool chain available for this platform.

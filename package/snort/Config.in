@@ -1,4 +1,5 @@
 config BR2_PACKAGE_SNORT
+	select BR2_PACKAGE_DAQ
 	bool "snort"
 	help
 	  Snort is an open source network intrusion detection and prevention system.

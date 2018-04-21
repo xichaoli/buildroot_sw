@@ -16,8 +16,8 @@ GNUPG_CONF_OPTS = \
 	--enable-minimal \
 	--disable-regex \
 	--enable-sha256 \
-	--enable-sha512
-
+	--enable-sha512 \
+	--cache-file=cross_compile_config.cache
 HOST_GNUPG_DEPENDENCIES = host-zlib host-ncurses
 HOST_GNUPG_CONF_OPTS = \
 	--disable-rpath \

@@ -9,7 +9,8 @@ KEEPALIVED_SITE = http://www.keepalived.org/software
 KEEPALIVED_DEPENDENCIES = host-pkgconf openssl popt
 KEEPALIVED_LICENSE = GPL-2.0+
 KEEPALIVED_LICENSE_FILES = COPYING
-KEEPALIVED_CONF_OPTS += --disable-dbus
+KEEPALIVED_CONF_OPTS += --disable-dbus \
+	--cache-file=cross_compile_config.cache
 
 ifeq ($(BR2_PACKAGE_LIBNL)$(BR2_PACKAGE_LIBNFNETLINK),yy)
 KEEPALIVED_DEPENDENCIES += libnl libnfnetlink

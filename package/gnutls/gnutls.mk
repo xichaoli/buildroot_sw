@@ -24,6 +24,12 @@ GNUTLS_CONF_OPTS = \
 	--without-tpm \
 	$(if $(BR2_PACKAGE_GNUTLS_TOOLS),--enable-tools,--disable-tools)
 GNUTLS_CONF_ENV = gl_cv_socket_ipv6=yes \
+	NETTLE_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	NETTLE_LIBS="-L${STAGING_DIR}/usr/lib -lnettle" \
+	HOGWEED_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	HOGWEED_LIBS="-L${STAGING_DIR}/usr/lib -lhogweed" \
+	LIBTASN1_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LIBTASN1_LIBS="-L${STAGING_DIR}/usr/lib -ltasn1" \
 	ac_cv_header_wchar_h=$(if $(BR2_USE_WCHAR),yes,no) \
 	gt_cv_c_wchar_t=$(if $(BR2_USE_WCHAR),yes,no) \
 	gt_cv_c_wint_t=$(if $(BR2_USE_WCHAR),yes,no) \

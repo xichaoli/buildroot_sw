@@ -54,6 +54,7 @@ E2FSPROGS_CONF_OPTS = \
 	--disable-rpath \
 	--enable-symlink-install \
 	--with-sysroot=$(STAGING_DIR)/usr \
+	LIBS="-L${STAGING_DIR}/usr/lib -luuid" \
 	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
 	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
 

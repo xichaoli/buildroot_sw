@@ -114,7 +114,9 @@ HOST_LIBGLIB2_DEPENDENCIES = \
 
 LIBGLIB2_CONF_OPTS = \
 	--with-pcre=system \
-	--disable-compile-warnings
+	--disable-compile-warnings \
+	LIBMOUNT_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LIBMOUNT_LDFLAGS="-L${STAGING_DIR}/usr/lib -lmount"
 
 ifneq ($(BR2_ENABLE_LOCALE),y)
 LIBGLIB2_DEPENDENCIES += libiconv

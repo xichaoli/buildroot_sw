@@ -1,0 +1,5 @@
+diff -Nur bind-9.11.2-P1-orig/config_cache bind-9.11.2-P1/config_cache
+--- bind-9.11.2-P1-orig/config_cache	1969-12-31 19:00:00.000000000 -0500
++++ bind-9.11.2-P1/config_cache	2018-04-27 04:42:32.844294144 -0400
+@@ -0,0 +1 @@
++cross_compiling="yes"

@@ -1,0 +1,144 @@
+diff -Nur freeradius-client-1.1.7-orig/debian/Makefile.in freeradius-client-1.1.7/debian/Makefile.in
+--- freeradius-client-1.1.7-orig/debian/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/debian/Makefile.in	2018-04-27 09:36:02.365437951 -0400
+@@ -158,7 +158,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/doc/Makefile.in freeradius-client-1.1.7/doc/Makefile.in
+--- freeradius-client-1.1.7-orig/doc/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/doc/Makefile.in	2018-04-27 09:36:02.401454079 -0400
+@@ -157,7 +157,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/etc/Makefile.in freeradius-client-1.1.7/etc/Makefile.in
+--- freeradius-client-1.1.7-orig/etc/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/etc/Makefile.in	2018-04-27 09:36:02.397452288 -0400
+@@ -187,7 +187,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/include/Makefile.in freeradius-client-1.1.7/include/Makefile.in
+--- freeradius-client-1.1.7-orig/include/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/include/Makefile.in	2018-04-27 09:36:02.421463039 -0400
+@@ -207,7 +207,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/lib/Makefile.in freeradius-client-1.1.7/lib/Makefile.in
+--- freeradius-client-1.1.7-orig/lib/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/lib/Makefile.in	2018-04-27 09:36:02.385446911 -0400
+@@ -247,7 +247,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/login.radius/Makefile.in freeradius-client-1.1.7/login.radius/Makefile.in
+--- freeradius-client-1.1.7-orig/login.radius/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/login.radius/Makefile.in	2018-04-27 09:36:02.413459455 -0400
+@@ -248,7 +248,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/login.radius/migs/Makefile.in freeradius-client-1.1.7/login.radius/migs/Makefile.in
+--- freeradius-client-1.1.7-orig/login.radius/migs/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/login.radius/migs/Makefile.in	2018-04-27 09:36:02.409457664 -0400
+@@ -158,7 +158,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/Makefile.in freeradius-client-1.1.7/Makefile.in
+--- freeradius-client-1.1.7-orig/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/Makefile.in	2018-04-27 09:36:02.393450495 -0400
+@@ -240,7 +240,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/man/Makefile.in freeradius-client-1.1.7/man/Makefile.in
+--- freeradius-client-1.1.7-orig/man/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/man/Makefile.in	2018-04-27 09:36:02.425464832 -0400
+@@ -157,7 +157,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/patches/Makefile.in freeradius-client-1.1.7/patches/Makefile.in
+--- freeradius-client-1.1.7-orig/patches/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/patches/Makefile.in	2018-04-27 09:36:02.373441535 -0400
+@@ -157,7 +157,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/rpm/Makefile.in freeradius-client-1.1.7/rpm/Makefile.in
+--- freeradius-client-1.1.7-orig/rpm/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/rpm/Makefile.in	2018-04-27 09:36:02.377443328 -0400
+@@ -158,7 +158,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@
+diff -Nur freeradius-client-1.1.7-orig/src/Makefile.in freeradius-client-1.1.7/src/Makefile.in
+--- freeradius-client-1.1.7-orig/src/Makefile.in	2015-01-19 11:18:26.000000000 -0500
++++ freeradius-client-1.1.7/src/Makefile.in	2018-04-27 09:36:02.381445120 -0400
+@@ -238,7 +238,7 @@
+ LD = @LD@
+ LDFLAGS = @LDFLAGS@
+ LIBOBJS = @LIBOBJS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ @NETTLE_LIBS@
+ LIBTOOL = @LIBTOOL@
+ LIBVERSION = @LIBVERSION@
+ LIPO = @LIPO@

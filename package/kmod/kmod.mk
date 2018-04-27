@@ -31,15 +31,13 @@ HOST_KMOD_CONF_OPTS = --disable-manpages
 ifeq ($(BR2_PACKAGE_ZLIB),y)
 KMOD_DEPENDENCIES += zlib
 KMOD_CONF_OPTS += --with-zlib \
-KMOD_CONF_ENV += \
 	zlib_CFLAGS="-I${STAGING_DIR}/usr/include" \
 	zlib_LDFLAGS="-L${STAGING_DIR}/usr/lib -llz"
 endif
 
 ifeq ($(BR2_PACKAGE_XZ),y)
 KMOD_DEPENDENCIES += xz
-KMOD_CONF_OPTS += --with-xz
-KMOD_CONF_ENV += \
+KMOD_CONF_OPTS += --with-xz \
 	liblzma_CFLAGS="-I${STAGING_DIR}/usr/include" \
 	liblzma_LDFLAGS="-L${STAGING_DIR}/usr/lib -llzma"
 endif

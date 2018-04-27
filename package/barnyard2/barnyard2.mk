@@ -7,7 +7,7 @@
 BARNYARD2_SITE = https://github.com/firnsy/barnyard2.git
 BARNYARD2_SITE_METHOD = git
 BARNYARD2_VERSION = master
-BARNYARD2_DEPENDENCIES = host-pkgconf snort oracle-mysql
+BARNYARD2_DEPENDENCIES = host-pkgconf snort
 BARNYARD2_LICENSE = GPLv2
 BARNYARD2_LICENSE_FILES = COPYING
 BARNYARD2_CONF_ENV =

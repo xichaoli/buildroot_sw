@@ -26,7 +26,8 @@ endif
 # Dependency is either on libgcrypt or openssl, guaranteed in Config.in.
 # Favour libgcrypt.
 ifeq ($(BR2_PACKAGE_LIBGCRYPT),y)
-LIBSSH_CONF_OPTS += -DWITH_GCRYPT=ON
+LIBSSH_CONF_OPTS += -DWITH_GCRYPT=ON \
+	-DGCRYPT_ROOT_DIR=${STAGING_DIR}/usr
 LIBSSH_DEPENDENCIES += libgcrypt
 else
 LIBSSH_CONF_OPTS += -DWITH_GCRYPT=OFF

@@ -561,8 +561,7 @@ endif
 
 .PHONY: dirs
 dirs: $(BUILD_DIR) $(STAGING_DIR) $(TARGET_DIR) \
-	$(HOST_DIR) $(HOST_DIR)/usr $(HOST_DIR)/lib \
-	$(HOST_DIR)/bin $(HOST_DIR)/include $(BINARIES_DIR)
+	$(HOST_DIR) $(HOST_DIR)/bin $(HOST_DIR)/usr $(HOST_DIR)/lib $(BINARIES_DIR)
 
 $(BUILD_DIR)/buildroot-config/auto.conf: $(BR2_CONFIG)
 	$(MAKE1) $(EXTRAMAKEARGS) HOSTCC="$(HOSTCC_NOCCACHE)" HOSTCXX="$(HOSTCXX_NOCCACHE)" silentoldconfig
@@ -586,24 +585,18 @@ $(HOST_DIR)/usr: $(HOST_DIR)
 	@ln -snf . $@
 
 $(HOST_DIR)/lib: $(HOST_DIR)
-	@mkdir -p $(@D)/${GNU_HOST_NAME}/sysroot/usr/lib
-	@ln -snf $(@D)/${GNU_HOST_NAME}/sysroot/usr/lib $@
+	@mkdir -p $@
 	@case $(HOSTARCH) in \
 		(*64) ln -snf lib $(@D)/lib64;; \
 		(*)   ln -snf lib $(@D)/lib32;; \
 	esac
 
 $(HOST_DIR)/bin: $(HOST_DIR)
-	@mkdir -p $(@D)/${GNU_HOST_NAME}/sysroot/usr/bin
-	@ln -snf $(@D)/${GNU_HOST_NAME}/sysroot/usr/bin $@
-
-$(HOST_DIR)/sbin: $(HOST_DIR)
-	@mkdir -p $(@D)/${GNU_HOST_NAME}/sysroot/usr/sbin
-	@ln -snf $(@D)/${GNU_HOST_NAME}/sysroot/usr/sbin $@
-
-$(HOST_DIR)/include: $(HOST_DIR)
-	@mkdir -p $(@D)/${GNU_HOST_NAME}/sysroot/usr/include
-	@ln -snf $(@D)/${GNU_HOST_NAME}/sysroot/usr/include $@
+	@mkdir -p $@
+	@for p in cpp c++ cc gcc g++ ; \
+	do \
+		ln -s /usr/bin/$$p $(HOST_DIR)/bin/$$p ; \
+	done
 
 # Populating the staging with the base directories is handled by the skeleton package
 $(STAGING_DIR):

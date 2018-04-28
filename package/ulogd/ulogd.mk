@@ -14,6 +14,8 @@ ULOGD_DEPENDENCIES = host-pkgconf \
 ULOGD_LICENSE = GPL-2.0
 ULOGD_LICENSE_FILES = COPYING
 
+ULOGD_CONF_ENV += CPPFLAGS="-I$(STAGING_DIR)/usr/include"
+
 # DB backends need threads
 ifeq ($(BR2_TOOLCHAIN_HAS_THREADS),y)
 ifeq ($(BR2_PACKAGE_MYSQL),y)

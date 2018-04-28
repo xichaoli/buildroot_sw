@@ -43,6 +43,9 @@ endif
 
 ifeq ($(BR2_PACKAGE_OPENVPN_LZO),y)
 OPENVPN_DEPENDENCIES += lzo
+OPENVPN_CONF_ENV += \
+	LZO_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LZO_LIBS="-L${STAGING_DIR}/usr/lib -llzo2"
 else
 OPENVPN_CONF_OPTS += --disable-lzo
 endif

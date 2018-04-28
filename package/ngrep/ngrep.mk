@@ -18,7 +18,7 @@ endif
 NGREP_CONF_ENV += LIBS+="$(NGREP_LIBS)"
 
 NGREP_CONF_OPTS = \
-	--with-pcap-includes=$(STAGING_DIR)/usr/include/pcap \
+	--with-pcap-includes=$(STAGING_DIR)/usr/include \
 	--enable-pcre \
 	--with-pcre=$(STAGING_DIR)/usr \
 	--disable-dropprivs \

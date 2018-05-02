@@ -32,6 +32,7 @@ UTIL_LINUX_LIBS = $(TARGET_NLS_LIBS)
 # (which needs systemd to be installed)
 UTIL_LINUX_CONF_OPTS += \
 	--without-systemd \
+	--without-udev \
 	--with-systemdsystemunitdir=no
 
 HOST_UTIL_LINUX_DEPENDENCIES = host-pkgconf
@@ -58,7 +59,7 @@ ifeq ($(BR2_PACKAGE_NCURSES_WCHAR),y)
 UTIL_LINUX_CONF_OPTS += --with-ncursesw
 UTIL_LINUX_CONF_ENV += NCURSESW6_CONFIG=$(STAGING_DIR)/usr/bin/$(NCURSES_CONFIG_SCRIPTS)
 else
-UTIL_LINUX_CONF_OPTS += --without-ncursesw --with-ncurses --disable-widechar
+UTIL_LINUX_CONF_OPTS += --without-ncursesw --with-ncurses --disable-widechar --without-tinfo
 UTIL_LINUX_CONF_ENV += NCURSES6_CONFIG=$(STAGING_DIR)/usr/bin/$(NCURSES_CONFIG_SCRIPTS)
 endif
 else
@@ -67,7 +68,7 @@ UTIL_LINUX_CONF_OPTS += --enable-widechar
 else
 UTIL_LINUX_CONF_OPTS += --disable-widechar
 endif
-UTIL_LINUX_CONF_OPTS += --without-ncursesw --without-ncurses
+UTIL_LINUX_CONF_OPTS += --without-ncursesw --without-ncurses --without-tinfo
 endif
 
 ifeq ($(BR2_PACKAGE_LIBCAP_NG),y)

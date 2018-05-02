@@ -13,4 +13,6 @@ FINDUTILS_CONF_ENV = \
 	ac_cv_func_working_mktime=yes \
 	gl_cv_func_wcwidth_works=yes
 
+FINDUTILS_CONF_OPTS = --without-selinux
+
 $(eval $(autotools-package))

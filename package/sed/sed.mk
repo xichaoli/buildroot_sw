@@ -18,6 +18,7 @@ SED_CONF_OPTS = \
 	--datadir=/usr/share \
 	--mandir=/usr/share/man \
 	--infodir=/usr/share/info \
+	--without-selinux \
 	--include=$(STAGING_DIR)/usr/include
 
 $(eval $(autotools-package))

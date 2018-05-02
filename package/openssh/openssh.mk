@@ -20,7 +20,8 @@ OPENSSH_CONF_OPTS = \
 	--disable-utmpx \
 	--disable-wtmp \
 	--disable-wtmpx \
-	--disable-strip
+	--disable-strip \
+	--cache-file=config_cache
 
 define OPENSSH_USERS
 	sshd -1 sshd -1 * - - - SSH drop priv user
@@ -62,6 +63,8 @@ OPENSSH_CONF_OPTS += --without-pie
 endif
 
 OPENSSH_DEPENDENCIES = zlib openssl
+
+OPENSSH_CONF_OPTS += --with-ssl-dir=${STAGING_DIR}/usr --without-openssl-header-check
 
 ifeq ($(BR2_PACKAGE_CRYPTODEV_LINUX),y)
 OPENSSH_DEPENDENCIES += cryptodev-linux

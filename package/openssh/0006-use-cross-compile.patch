@@ -1,0 +1,5 @@
+diff -Nur openssh-7.6p1-orig/config_cache openssh-7.6p1/config_cache
+--- openssh-7.6p1-orig/config_cache	1969-12-31 19:00:00.000000000 -0500
++++ openssh-7.6p1/config_cache	2018-05-02 04:23:33.738203136 -0400
+@@ -0,0 +1 @@
++cross_compiling="yes"

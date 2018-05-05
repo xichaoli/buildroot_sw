@@ -1,0 +1,87 @@
+diff -Nur coreutils-8.27-orig/configure coreutils-8.27/configure
+--- coreutils-8.27-orig/configure	2017-03-09 13:00:50.000000000 +0800
++++ coreutils-8.27/configure	2018-05-05 13:07:59.071660032 +0800
+@@ -26648,7 +26648,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lcrypto  $LIBS"
++LIBS="-L${STAGING_DIR}/usr/lib -lcrypto  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -26687,7 +26687,7 @@
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+ _ACEOF
+- LIB_CRYPTO=-lcrypto
++ LIB_CRYPTO="-L${STAGING_DIR}/usr/lib -lcrypto"
+ 
+ $as_echo "#define HAVE_OPENSSL_MD5 1" >>confdefs.h
+ 
+@@ -26739,7 +26739,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lcrypto  $LIBS"
++LIBS="-L${STAGING_DIR}/usr/lib -lcrypto  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -26778,7 +26778,7 @@
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+ _ACEOF
+- LIB_CRYPTO=-lcrypto
++ LIB_CRYPTO="-L${STAGING_DIR}/usr/lib -lcrypto"
+ 
+ $as_echo "#define HAVE_OPENSSL_SHA1 1" >>confdefs.h
+ 
+@@ -26830,7 +26830,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lcrypto  $LIBS"
++LIBS="-L${STAGING_DIR}/usr/lib -lcrypto  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -26869,7 +26869,7 @@
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+ _ACEOF
+- LIB_CRYPTO=-lcrypto
++ LIB_CRYPTO="-L${STAGING_DIR}/usr/lib -lcrypto"
+ 
+ $as_echo "#define HAVE_OPENSSL_SHA256 1" >>confdefs.h
+ 
+@@ -26921,7 +26921,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lcrypto  $LIBS"
++LIBS="-L${STAGING_DIR}/usr/lib -lcrypto  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -26960,7 +26960,7 @@
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+ _ACEOF
+- LIB_CRYPTO=-lcrypto
++ LIB_CRYPTO="-L${STAGING_DIR}/usr/lib -lcrypto"
+ 
+ $as_echo "#define HAVE_OPENSSL_SHA512 1" >>confdefs.h
+ 
+diff -Nur coreutils-8.27-orig/m4/gl-openssl.m4 coreutils-8.27/m4/gl-openssl.m4
+--- coreutils-8.27-orig/m4/gl-openssl.m4	2017-01-02 06:35:38.000000000 +0800
++++ coreutils-8.27/m4/gl-openssl.m4	2018-05-05 13:04:44.336457728 +0800
+@@ -37,7 +37,7 @@
+   if test "x$with_openssl" != xno; then
+     AC_CHECK_LIB([crypto], [$1],
+       [AC_CHECK_HEADERS([openssl/$ALG_header],
+-         [LIB_CRYPTO=-lcrypto
++         [LIB_CRYPTO="-L ${STAGING_DIR}/usr/lib -lcrypto"
+           AC_DEFINE([HAVE_OPENSSL_$1], [1],
+             [Define to 1 if libcrypto is used for $1.])])])
+     if test "x$LIB_CRYPTO" = x; then

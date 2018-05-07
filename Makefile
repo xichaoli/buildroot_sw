@@ -595,7 +595,7 @@ $(HOST_DIR)/bin: $(HOST_DIR)
 	@mkdir -p $@
 	@for p in cpp c++ cc gcc g++ ; \
 	do \
-		ln -s /usr/bin/$$p $(HOST_DIR)/bin/$$p ; \
+		ln -snf /usr/bin/$$p $(HOST_DIR)/bin/$$p ; \
 	done
 
 # Populating the staging with the base directories is handled by the skeleton package

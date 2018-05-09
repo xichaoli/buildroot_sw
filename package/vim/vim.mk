@@ -22,8 +22,10 @@ VIM_CONF_ENV = \
 	ac_cv_sizeof_int=4 \
 	ac_cv_sizeof_off_t=8 \
 	ac_cv_small_wchar_t=no
+
 # GUI/X11 headers leak from the host so forcibly disable them
-VIM_CONF_OPTS = --with-tlib=ncurses --enable-gui=no --without-x --cache-file=cross_compile_config.cache
+VIM_CONF_OPTS = --with-tlib=ncurses --enable-gui=no --without-x \
+	--cache-file=cross_compile_config.cache LDFLAGS=-L$(STAGING_DIR)/usr/lib
 VIM_LICENSE = Charityware
 VIM_LICENSE_FILES = README.txt
 

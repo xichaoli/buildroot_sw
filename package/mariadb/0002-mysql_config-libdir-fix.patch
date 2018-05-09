@@ -1,0 +1,17 @@
+diff -Nur mariadb-10.1.31-orig/scripts/mysql_config.sh mariadb-10.1.31/scripts/mysql_config.sh
+--- mariadb-10.1.31-orig/scripts/mysql_config.sh	2018-02-04 10:30:31.000000000 +0800
++++ mariadb-10.1.31/scripts/mysql_config.sh	2018-05-09 09:22:00.148293631 +0800
+@@ -106,7 +106,13 @@
+ 
+ # Create options 
+ libs="-L$pkglibdir @RPATH_OPTION@ @LIBS_FOR_CLIENTS@"
++if [ "$basedir" != "/usr" ]; then
++  libs="-L$pkglibdir/.. $libs"
++fi
+ embedded_libs="-L$pkglibdir @RPATH_OPTION@ @EMB_LIBS_FOR_CLIENTS@"
++if [ "$basedir" != "/usr" ]; then
++  embedded_libs="-L$pkglibdir/.. $embedded_libs"
++fi
+ 
+ include="-I$pkgincludedir"
+ if [ "$basedir" != "/usr" ]; then

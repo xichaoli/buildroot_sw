@@ -38,7 +38,7 @@ start)
 	if [ ! -f .part_init_done ]
 	then
 		echo "###### The ${log_partition} is empty ######"
-		rsync -a --delete /root/.backups/log/ /var/log/
+		rsync -a --delete /root/.backups/var/log/ /var/log/
 		touch /var/log/.part_init_done
 		sync
 	fi

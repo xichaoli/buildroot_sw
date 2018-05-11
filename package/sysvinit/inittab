@@ -9,13 +9,21 @@ si1::sysinit:/bin/mount -o remount,rw /
 si2::sysinit:/bin/mkdir -p /dev/pts
 si3::sysinit:/bin/mkdir -p /dev/shm
 si4::sysinit:/bin/mount -a
-si5::sysinit:/bin/hostname -F /etc/hostname
-rcS:12345:wait:/etc/init.d/rcS
+si5::sysinit:/sbin/depmod -a
+si6::sysinit:/bin/hostname -F /etc/hostname
+si7::sysinit:/etc/init.d/rcS
 
 # S0:1:respawn:/sbin/getty -L ttyS0 115200 vt100 # GENERIC_SERIAL
 
+1::respawn:/sbin/getty --noclear tty1 115200 linux
+2::respawn:/sbin/getty tty2 115200 linux 
+3::respawn:/sbin/getty tty3 115200 linux
+4::respawn:/sbin/getty tty4 115200 linux
+5::respawn:/sbin/getty tty5 115200 linux
+6::respawn:/sbin/getty tty6 115200 linux
+
 # Stuff to do for the 3-finger salute
-#ca::ctrlaltdel:/sbin/reboot
+ca::ctrlaltdel:/sbin/shutdown -r now
 
 # Stuff to do before rebooting
 shd0:06:wait:/etc/init.d/rcK
@@ -24,4 +32,4 @@ shd2:06:wait:/bin/umount -a -r
 
 # The usual halt or reboot actions
 hlt0:0:wait:/sbin/halt -dhp
-reb0:6:wait:/sbin/reboot
+reb0:6:wait:/sbin/shutdown -r now

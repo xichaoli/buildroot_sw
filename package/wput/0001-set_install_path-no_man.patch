@@ -1,0 +1,36 @@
+diff -Nur wput-0.6.1-orig/Makefile wput-0.6.1/Makefile
+--- wput-0.6.1-orig/Makefile	2007-12-13 01:30:04.000000000 +0800
++++ wput-0.6.1/Makefile	2018-05-11 11:46:44.900717056 +0800
+@@ -17,7 +17,6 @@
+ install: all
+ 	cd po && $(MAKE) $(MAKEDEFS) $@
+ 	install -m0755 wput $(bindir)
+-	install -m0644 doc/wput.1.gz $(mandir)
+ 	@echo "----------------"
+ 	@echo "Wput installed. See 'wput -h' or 'man wput' for usage information."
+ 	@echo "Further documentation is located in the doc/USAGE.* files."
+@@ -27,5 +26,4 @@
+ 	@echo "----------------"
+ uninstall:
+ 	rm -f $(bindir)/wput
+-	rm -f $(mandir)/wput.1.gz
+ 	
+diff -Nur wput-0.6.1-orig/Makefile.in wput-0.6.1/Makefile.in
+--- wput-0.6.1-orig/Makefile.in	2007-12-13 01:30:04.000000000 +0800
++++ wput-0.6.1/Makefile.in	2018-05-11 11:46:27.857084928 +0800
+@@ -16,8 +16,7 @@
+ 
+ install: all
+ 	cd po && $(MAKE) $(MAKEDEFS) $@
+-	install -m0755 wput $(bindir)
+-	install -m0644 doc/wput.1.gz $(mandir)
++	install -m0755 wput $(DESTDIR)$(bindir)
+ 	@echo "----------------"
+ 	@echo "Wput installed. See 'wput -h' or 'man wput' for usage information."
+ 	@echo "Further documentation is located in the doc/USAGE.* files."
+@@ -27,5 +26,4 @@
+ 	@echo "----------------"
+ uninstall:
+ 	rm -f $(bindir)/wput
+-	rm -f $(mandir)/wput.1.gz
+ 	

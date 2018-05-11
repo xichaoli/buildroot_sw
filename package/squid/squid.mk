@@ -22,7 +22,11 @@ SQUID_CONF_ENV = \
 	ac_cv_func_strnstr=no \
 	ac_cv_have_squid=yes \
 	BUILDCXX="$(HOSTCXX)" \
-	BUILDCXXFLAGS="$(HOST_CXXFLAGS)"
+	BUILDCXXFLAGS="$(HOST_CXXFLAGS)" \
+	LZO_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LZO_LIBS="-L${STAGING_DIR}/usr/lib -llzo2" \
+	CPPFLAGS="-I${STAGING_DIR}/usr/include"
+
 SQUID_CONF_OPTS = \
 	--enable-async-io=8 \
 	$(if $(BR2_TOOLCHAIN_USES_MUSL),--disable-linux-netfilter,--enable-linux-netfilter) \
@@ -53,6 +57,9 @@ endif
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
 SQUID_CONF_OPTS += --with-openssl
 SQUID_DEPENDENCIES += openssl
+SQUID_CONF_ENV += \
+	OPENSSL_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	OPENSSL_LIBS="-L${STAGING_DIR}/usr/lib -lssl -lcrypto"
 else
 SQUID_CONF_OPTS += --without-openssl
 endif
@@ -60,6 +67,9 @@ endif
 ifeq ($(BR2_PACKAGE_GNUTLS),y)
 SQUID_CONF_OPTS += --with-gnutls
 SQUID_DEPENDENCIES += gnutls
+SQUID_CONF_ENV += \
+	GNUTLS_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	GNUTLS_LIBS="-L${STAGING_DIR}/usr/lib -lgnutls"
 else
 SQUID_CONF_OPTS += --without-gnutls
 endif

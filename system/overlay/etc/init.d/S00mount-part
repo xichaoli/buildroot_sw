@@ -7,9 +7,9 @@ log_partition=sda6
 
 case "$1" in
 start)
-	printf "Mounting swap partition ..."
-	swapon ${swap_partition}
-	printf "Mounting writeable partition ..."
+	echo "Mounting swap partition ..."
+	swapon /dev/${swap_partition}
+	echo "Mounting writeable partition ..."
 	############################# /etc ############################
 	mount /dev/${conf_partition} /etc
 	cd /etc
@@ -38,7 +38,7 @@ start)
 	if [ ! -f .part_init_done ]
 	then
 		echo "###### The ${log_partition} is empty ######"
-		rsync -a --delete /root/.backups/log/ /var/log/
+		rsync -a --delete /root/.backups/var/log/ /var/log/
 		touch /var/log/.part_init_done
 		sync
 	fi
@@ -52,7 +52,7 @@ stop)
 	#############################   /etc   ############################
 	umount /etc
 	#############################   swap   ############################
-	swapoff ${swap_partition}
+	swapoff /dev/${swap_partition}
     ;;
 
 *)

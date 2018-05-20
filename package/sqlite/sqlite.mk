@@ -4,15 +4,19 @@
 #
 ################################################################################
 
-SQLITE_VERSION = 3210000
+SQLITE_VERSION = 3220000
 SQLITE_SOURCE = sqlite-autoconf-$(SQLITE_VERSION).tar.gz
-SQLITE_SITE = http://www.sqlite.org/2017
+SQLITE_SITE = http://www.sqlite.org/2018
 SQLITE_LICENSE = Public domain
 SQLITE_LICENSE_FILES = tea/license.terms
 SQLITE_INSTALL_STAGING = YES
 
 ifeq ($(BR2_PACKAGE_SQLITE_STAT3),y)
 SQLITE_CFLAGS += -DSQLITE_ENABLE_STAT3
+endif
+
+ifeq ($(BR2_PACKAGE_SQLITE_ENABLE_COLUMN_METADATA),y)
+SQLITE_CFLAGS += -DSQLITE_ENABLE_COLUMN_METADATA
 endif
 
 ifeq ($(BR2_PACKAGE_SQLITE_ENABLE_FTS3),y)

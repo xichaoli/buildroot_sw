@@ -14,13 +14,13 @@ hard_detect(){
 	if [ ! -b /dev/${LOCAL_DISK} ]
 	then
 		echo -e "\e[1;31mPlease enter the correct local disk name ! \e[m"
-		continue
+		return 1
 	fi
 	read -p "Where to read the installed system files,it should be sr0 or sdbx : " REMOVABLE_DISK
 	if [ ! -b /dev/${REMOVABLE_DISK} ]
 	then
 		echo -e "\e[1;31mPlease enter the correct removable disk name ! \e[m"
-		continue
+		return 1
 	fi
 }
 
@@ -101,6 +101,7 @@ do
 	case $input in
 		1) echo "Install system ... "
 			hard_detect
+			if [ $? -eq 1 ];then continue;fi
 			partition_to_prepare ${LOCAL_DISK}
 			pre_install ${LOCAL_DISK} ${REMOVABLE_DISK}
 			install_bootloader ${LOCAL_DISK}

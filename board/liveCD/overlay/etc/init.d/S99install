@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# install menu
+#
+
+start() {
+	/etc/init.d/install.sh
+}
+stop() {
+	echo "Nothing to be done."
+}
+restart() {
+	stop
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+

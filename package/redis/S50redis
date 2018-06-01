@@ -6,6 +6,8 @@
 start() {
 	printf "Starting redis: "
 	umask 077
+	chown redis /etc/redis.conf
+	chown redis.redis /var/{lib,log,run}/redis
 	start-stop-daemon -S -q -c redis:redis -b \
 		--exec /usr/bin/redis-server -- /etc/redis.conf
 	[ $? = 0 ] && echo "OK" || echo "FAIL"

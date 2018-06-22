@@ -51,7 +51,7 @@ endif
 ifeq ($(BR2_PACKAGE_NCURSES),y)
 UTIL_LINUX_DEPENDENCIES += ncurses
 ifeq ($(BR2_PACKAGE_NCURSES_WCHAR),y)
-UTIL_LINUX_CONF_OPTS += --with-ncursesw
+UTIL_LINUX_CONF_OPTS += --with-ncursesw --without-tinfo
 UTIL_LINUX_CONF_ENV += NCURSESW6_CONFIG=$(STAGING_DIR)/usr/bin/$(NCURSES_CONFIG_SCRIPTS)
 else
 UTIL_LINUX_CONF_OPTS += --without-ncursesw --with-ncurses --disable-widechar --without-tinfo

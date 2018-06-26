@@ -1,0 +1,11 @@
+diff -Nur ipmitool-1.8.18-orig/lib/ipmi_isol.c ipmitool-1.8.18/lib/ipmi_isol.c
+--- ipmitool-1.8.18-orig/lib/ipmi_isol.c	2016-03-13 18:14:08.000000000 +0800
++++ ipmitool-1.8.18/lib/ipmi_isol.c	2018-05-11 14:59:06.599705903 +0800
+@@ -30,6 +30,7 @@
+  * EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+  */
+ #define _XOPEN_SOURCE
++#define _BSD_SOURCE
+ 
+ #include <stdlib.h>
+ #include <string.h>

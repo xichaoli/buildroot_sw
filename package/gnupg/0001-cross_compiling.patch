@@ -1,0 +1,5 @@
+diff -Nur gnupg-1.4.22-orig/cross_compile_config.cache gnupg-1.4.22/cross_compile_config.cache
+--- gnupg-1.4.22-orig/cross_compile_config.cache	1969-12-31 19:00:00.000000000 -0500
++++ gnupg-1.4.22/cross_compile_config.cache	2018-04-21 11:40:36.340123647 -0400
+@@ -0,0 +1 @@
++cross_compiling="yes"

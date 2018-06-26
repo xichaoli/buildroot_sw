@@ -1,0 +1,31 @@
+diff -Nuar coreutils-8.27-orig/Makefile.in coreutils-8.27/Makefile.in
+--- coreutils-8.27-orig/Makefile.in	2017-03-09 00:24:51.000000000 -0500
++++ coreutils-8.27/Makefile.in	2018-04-20 07:33:26.291100160 -0400
+@@ -5042,10 +5042,9 @@
+ 
+ pm = progs-makefile
+ pr = progs-readme
+-@CROSS_COMPILING_FALSE@cu_install_program = src/ginstall
+ 
+-# Use the just-built 'ginstall', when not cross-compiling.
+-@CROSS_COMPILING_TRUE@cu_install_program = @INSTALL@
++# Always use the local 'ginstall', where or not cross-compiling.
++cu_install_program = @INSTALL@
+ info_TEXINFOS = doc/coreutils.texi
+ doc_coreutils_TEXINFOS = \
+   doc/perm.texi \
+diff -Nuar coreutils-8.27-orig/src/local.mk coreutils-8.27/src/local.mk
+--- coreutils-8.27-orig/src/local.mk	2017-03-08 00:34:11.000000000 -0500
++++ coreutils-8.27/src/local.mk	2018-04-20 07:32:19.753304575 -0400
+@@ -647,10 +647,6 @@
+ check-duplicate-no-install:
+ 	$(AM_V_GEN)test -z "`echo '$(EXTRA_PROGRAMS)' | tr ' ' '\n' | uniq -d`"
+ 
+-# Use the just-built 'ginstall', when not cross-compiling.
+-if CROSS_COMPILING
++# Always use the local 'ginstall', where or not cross-compiling.
+ cu_install_program = @INSTALL@
+-else
+-cu_install_program = src/ginstall
+-endif
+ INSTALL = $(cu_install_program) -c

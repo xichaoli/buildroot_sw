@@ -11,6 +11,7 @@ TCPREPLAY_LICENSE_FILES = docs/LICENSE
 TCPREPLAY_CONF_ENV = \
 	tr_cv_libpcap_version=">= 0.7.0" \
 	ac_cv_have_bpf=no \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
 	$(call AUTOCONF_AC_CHECK_FILE_VAL,$(STAGING_DIR)/usr/include/pcap-netmap.c)=no
 TCPREPLAY_CONF_OPTS = --with-libpcap=$(STAGING_DIR)/usr
 TCPREPLAY_DEPENDENCIES = libpcap

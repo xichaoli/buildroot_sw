@@ -1,4 +1,5 @@
 config BR2_PACKAGE_SNORT
+	select BR2_PACKAGE_DAQ
 	bool "snort"
 	depends on BR2_USE_WCHAR
 	depends on BR2_USE_MMU # fork()

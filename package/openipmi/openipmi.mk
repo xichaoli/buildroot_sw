@@ -18,7 +18,9 @@ OPENIPMI_CONF_OPTS = \
 	--with-tcl=no \
 	--with-perl=no \
 	--with-python=no \
-	--with-swig=no
+	--with-swig=no \
+	--with-poptflags=-I${STAGING_DIR}/usr/include \
+	--with-poptlibs="-L${STAGING_DIR}/usr/lib -lpopt"
 
 ifeq ($(BR2_PACKAGE_GDBM),y)
 OPENIPMI_DEPENDENCIES += gdbm

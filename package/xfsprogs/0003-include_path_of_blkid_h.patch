@@ -1,0 +1,14 @@
+diff -Nur xfsprogs-4.14.0-orig/include/builddefs.in xfsprogs-4.14.0/include/builddefs.in
+--- xfsprogs-4.14.0-orig/include/builddefs.in	2017-11-27 11:57:55.000000000 -0500
++++ xfsprogs-4.14.0/include/builddefs.in	2018-04-18 08:41:52.698316800 -0400
+@@ -162,7 +162,9 @@
+ 
+ GCFLAGS = $(DEBUG) \
+ 	  -DVERSION=\"$(PKG_VERSION)\" -DLOCALEDIR=\"$(PKG_LOCALE_DIR)\"  \
+-	  -DPACKAGE=\"$(PKG_NAME)\" -I$(TOPDIR)/include -I$(TOPDIR)/libxfs
++	  -DPACKAGE=\"$(PKG_NAME)\" -I$(TOPDIR)/include -I$(TOPDIR)/libxfs \
++	  -I$(STAGING_DIR)/usr/include
++
+ 
+ ifeq ($(ENABLE_GETTEXT),yes)
+ GCFLAGS += -DENABLE_GETTEXT

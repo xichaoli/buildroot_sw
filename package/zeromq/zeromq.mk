@@ -29,6 +29,9 @@ ifeq ($(BR2_STATIC_LIBS),y)
 ZEROMQ_CONF_OPTS += LIBS=-lstdc++
 endif
 
+ZEROMQ_CONF_OPTS += --with-relaxed \
+	CPPFLAGS=-I${STAGING_DIR}/usr/include
+
 ifeq ($(BR2_PACKAGE_ZEROMQ_NORM),y)
 ZEROMQ_CONF_OPTS += --with-norm
 ZEROMQ_DEPENDENCIES += norm

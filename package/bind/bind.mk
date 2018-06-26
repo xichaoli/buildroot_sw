@@ -30,7 +30,8 @@ BIND_CONF_OPTS = \
 	--enable-epoll \
 	--with-libtool \
 	--with-gssapi=no \
-	--enable-filter-aaaa
+	--enable-filter-aaaa \
+	--cache-file=config_cache
 
 ifeq ($(BR2_PACKAGE_ZLIB),y)
 BIND_CONF_OPTS += --with-zlib=$(STAGING_DIR)/usr/include
@@ -39,12 +40,12 @@ else
 BIND_CONF_OPTS += --without-zlib
 endif
 
-ifeq ($(BR2_PACKAGE_LIBCAP),y)
-BIND_CONF_OPTS += --enable-linux-caps
-BIND_DEPENDENCIES += libcap
-else
+#ifeq ($(BR2_PACKAGE_LIBCAP),y)
+#BIND_CONF_OPTS += --enable-linux-caps
+#BIND_DEPENDENCIES += libcap
+#else
 BIND_CONF_OPTS += --disable-linux-caps
-endif
+#endif
 
 ifeq ($(BR2_PACKAGE_LIBXML2),y)
 BIND_CONF_OPTS += --with-libxml2=$(STAGING_DIR)/usr --enable-newstats

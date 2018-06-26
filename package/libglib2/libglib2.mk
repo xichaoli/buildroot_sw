@@ -76,6 +76,8 @@ LIBGLIB2_CONF_ENV = \
 	ac_cv_func_strtod_l=no \
 	ac_cv_func_strtoll_l=no \
 	ac_cv_func_strtoull_l=no \
+	LIBFFI_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LIBFFI_LDFLAGS="-L${STAGING_DIR}/usr/lib -lffi" \
 	gt_cv_c_wchar_t=$(if $(BR2_USE_WCHAR),yes,no)
 
 # old uClibc versions don't provide qsort_r
@@ -91,6 +93,8 @@ LIBGLIB2_CONF_ENV += CFLAGS="$(TARGET_CFLAGS) -marm"
 endif
 
 HOST_LIBGLIB2_CONF_OPTS = \
+	LIBFFI_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LIBFFI_LIBS="-L${STAGING_DIR}/usr/lib -lffi" \
 	--disable-coverage \
 	--disable-dtrace \
 	--disable-fam \
@@ -114,7 +118,11 @@ HOST_LIBGLIB2_DEPENDENCIES = \
 
 LIBGLIB2_CONF_OPTS = \
 	--with-pcre=system \
-	--disable-compile-warnings
+	--disable-compile-warnings \
+	LIBFFI_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LIBFFI_LIBS="-L${STAGING_DIR}/usr/lib -lffi" \
+	LIBMOUNT_CFLAGS="-I${STAGING_DIR}/usr/include" \
+	LIBMOUNT_LIBS="-L${STAGING_DIR}/usr/lib -lmount"
 
 ifneq ($(BR2_ENABLE_LOCALE),y)
 LIBGLIB2_DEPENDENCIES += libiconv

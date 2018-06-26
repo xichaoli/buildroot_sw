@@ -17,5 +17,10 @@ PIXZ_LICENSE_FILES = LICENSE
 # hint to say that it actually is present.
 PIXZ_CONF_ENV = ac_cv_file_src_pixz_1=yes
 
+PIXZ_CONF_OPTS += \
+	--with-sysroot=$(STAGING_DIR)/usr \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
+
 $(eval $(autotools-package))
 $(eval $(host-autotools-package))

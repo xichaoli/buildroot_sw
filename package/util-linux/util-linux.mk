@@ -17,13 +17,17 @@ UTIL_LINUX_INSTALL_STAGING = YES
 UTIL_LINUX_DEPENDENCIES = host-pkgconf $(TARGET_NLS_DEPENDENCIES)
 UTIL_LINUX_CONF_OPTS += \
 	--disable-rpath \
-	--disable-makeinstall-chown
+	--disable-makeinstall-chown \
+	--with-sysroot=$(STAGING_DIR)/usr \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
 UTIL_LINUX_LIBS = $(TARGET_NLS_LIBS)
 
 # system depends on util-linux so we enable systemd support
 # (which needs systemd to be installed)
 UTIL_LINUX_CONF_OPTS += \
 	--without-systemd \
+	--without-udev \
 	--with-systemdsystemunitdir=no
 
 HOST_UTIL_LINUX_DEPENDENCIES = host-pkgconf
@@ -47,10 +51,10 @@ endif
 ifeq ($(BR2_PACKAGE_NCURSES),y)
 UTIL_LINUX_DEPENDENCIES += ncurses
 ifeq ($(BR2_PACKAGE_NCURSES_WCHAR),y)
-UTIL_LINUX_CONF_OPTS += --with-ncursesw
+UTIL_LINUX_CONF_OPTS += --with-ncursesw --without-tinfo
 UTIL_LINUX_CONF_ENV += NCURSESW6_CONFIG=$(STAGING_DIR)/usr/bin/$(NCURSES_CONFIG_SCRIPTS)
 else
-UTIL_LINUX_CONF_OPTS += --without-ncursesw --with-ncurses --disable-widechar
+UTIL_LINUX_CONF_OPTS += --without-ncursesw --with-ncurses --disable-widechar --without-tinfo
 UTIL_LINUX_CONF_ENV += NCURSES6_CONFIG=$(STAGING_DIR)/usr/bin/$(NCURSES_CONFIG_SCRIPTS)
 endif
 else
@@ -59,7 +63,7 @@ UTIL_LINUX_CONF_OPTS += --enable-widechar
 else
 UTIL_LINUX_CONF_OPTS += --disable-widechar
 endif
-UTIL_LINUX_CONF_OPTS += --without-ncursesw --without-ncurses
+UTIL_LINUX_CONF_OPTS += --without-ncursesw --without-ncurses --without-tinfo
 endif
 
 ifeq ($(BR2_PACKAGE_LIBCAP_NG),y)
@@ -203,17 +207,17 @@ HOST_UTIL_LINUX_CONF_OPTS += --disable-all-programs
 endif
 
 # Install libmount Python bindings
-ifeq ($(BR2_PACKAGE_PYTHON)$(BR2_PACKAGE_PYTHON3),y)
-UTIL_LINUX_CONF_OPTS += --with-python
-UTIL_LINUX_DEPENDENCIES += $(if $(BR2_PACKAGE_PYTHON),python,python3)
-ifeq ($(BR2_PACKAGE_UTIL_LINUX_LIBMOUNT),y)
-UTIL_LINUX_CONF_OPTS += --enable-pylibmount
-else
-UTIL_LINUX_CONF_OPTS += --disable-pylibmount
-endif
-else
+#ifeq ($(BR2_PACKAGE_PYTHON)$(BR2_PACKAGE_PYTHON3),y)
+#UTIL_LINUX_CONF_OPTS += --with-python
+#UTIL_LINUX_DEPENDENCIES += $(if $(BR2_PACKAGE_PYTHON),python,python3)
+#ifeq ($(BR2_PACKAGE_UTIL_LINUX_LIBMOUNT),y)
+#UTIL_LINUX_CONF_OPTS += --enable-pylibmount
+#else
+#UTIL_LINUX_CONF_OPTS += --disable-pylibmount
+#endif
+#else
 UTIL_LINUX_CONF_OPTS += --without-python
-endif
+#endif
 
 ifeq ($(BR2_PACKAGE_READLINE),y)
 UTIL_LINUX_CONF_OPTS += --with-readline

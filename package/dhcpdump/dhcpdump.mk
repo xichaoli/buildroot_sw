@@ -16,8 +16,10 @@ DHCPDUMP_LIBS += `$(STAGING_DIR)/usr/bin/pcap-config --static --additional-libs`
 endif
 
 define DHCPDUMP_BUILD_CMDS
-	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) CC="$(TARGET_CC) $(TARGET_CFLAGS) \
-		-D_GNU_SOURCE" LIBS="$(DHCPDUMP_LIBS)"
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) CC="$(TARGET_CC) $(TARGET_CFLAGS) -O0 \
+		-D_GNU_SOURCE" LIBS="$(DHCPDUMP_LIBS)" \
+		CFLAGS="-I$(STAGING_DIR)/usr/include" \
+		LDFLAGS="-L$(STAGING_DIR)/usr/lib"
 endef
 
 define DHCPDUMP_INSTALL_TARGET_CMDS

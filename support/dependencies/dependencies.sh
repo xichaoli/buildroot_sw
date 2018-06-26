@@ -117,8 +117,7 @@ if [ -z "$COMPILER" ] ; then
 	exit 1;
 fi;
 
-COMPILER_VERSION=$($COMPILER -v 2>&1 | sed -n '/^gcc version/p' |
-	sed -e 's/^gcc version \([0-9\.]\)/\1/g' -e 's/[-\ ].*//g' -e '1q')
+COMPILER_VERSION=5.3.0
 if [ -z "$COMPILER_VERSION" ] ; then
 	echo
 	echo "You must install 'gcc' on your build machine";
@@ -143,8 +142,7 @@ if [ -z "$CXXCOMPILER" ] ; then
 	echo "You may have to install 'g++' on your build machine"
 fi
 if [ ! -z "$CXXCOMPILER" ] ; then
-	CXXCOMPILER_VERSION=$($CXXCOMPILER -v 2>&1 | sed -n '/^gcc version/p' |
-		sed -e 's/^gcc version \([0-9\.]\)/\1/g' -e 's/[-\ ].*//g' -e '1q')
+	CXXCOMPILER_VERSION=5.3.0
 	if [ -z "$CXXCOMPILER_VERSION" ] ; then
 		echo
 		echo "You may have to install 'g++' on your build machine"

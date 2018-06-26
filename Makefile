@@ -345,6 +345,7 @@ export HOSTARCH := $(shell LC_ALL=C $(HOSTCC_NOCCACHE) -v 2>&1 | \
 	    -e 's/sa110/arm/' \
 	    -e 's/ppc64/powerpc64/' \
 	    -e 's/ppc/powerpc/' \
+	    -e 's/sw_64sw6/sw_64/' \
 	    -e 's/macppc/powerpc/' \
 	    -e 's/sh.*/sh/' )
 
@@ -556,8 +557,8 @@ $(foreach pkg,$(call UPPERCASE,$(PACKAGES)),\
 endif
 
 .PHONY: dirs
-dirs: $(BUILD_DIR) $(STAGING_DIR) $(BASE_TARGET_DIR) \
-	$(HOST_DIR) $(HOST_DIR_SYMLINK) $(BINARIES_DIR)
+dirs: $(BUILD_DIR) $(STAGING_DIR) $(TARGET_DIR) \
+	$(HOST_DIR) $(HOST_DIR_SYMLINK) $(HOST_DIR)/bin $(HOST_DIR)/usr $(HOST_DIR)/lib $(BINARIES_DIR)
 
 $(BUILD_DIR)/buildroot-config/auto.conf: $(BR2_CONFIG)
 	$(MAKE1) $(EXTRAMAKEARGS) HOSTCC="$(HOSTCC_NOCCACHE)" HOSTCXX="$(HOSTCXX_NOCCACHE)" silentoldconfig
@@ -576,6 +577,24 @@ sdk: world
 	$(INSTALL) -m 755 $(TOPDIR)/support/misc/relocate-sdk.sh $(HOST_DIR)/relocate-sdk.sh
 	mkdir -p $(HOST_DIR)/share/buildroot
 	echo $(HOST_DIR) > $(HOST_DIR)/share/buildroot/sdk-location
+
+# Compatibility symlink in case a post-build script still uses $(HOST_DIR)/usr
+$(HOST_DIR)/usr: $(HOST_DIR)
+	@ln -snf . $@
+
+$(HOST_DIR)/lib: $(HOST_DIR)
+	@mkdir -p $@
+	@case $(HOSTARCH) in \
+		(*64) ln -snf lib $(@D)/lib64;; \
+		(*)   ln -snf lib $(@D)/lib32;; \
+	esac
+
+$(HOST_DIR)/bin: $(HOST_DIR)
+	@mkdir -p $@
+	@for p in cpp c++ cc gcc g++ ; \
+	do \
+		ln -snf /usr/bin/$$p $(HOST_DIR)/bin/$$p ; \
+	done
 
 # Populating the staging with the base directories is handled by the skeleton package
 $(STAGING_DIR):

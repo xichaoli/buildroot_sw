@@ -18,7 +18,10 @@ XFSPROGS_CONF_OPTS = \
 	--enable-gettext=no \
 	INSTALL_USER=root \
 	INSTALL_GROUP=root \
-	--enable-static
+	--enable-static \
+	--with-sysroot=$(STAGING_DIR)/usr \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LDFLAGS="-L$(STAGING_DIR)/usr/lib"
 
 ifeq ($(BR2_PACKAGE_LIBUNISTRING),y)
 XFSPROGS_DEPENDENCIES += libunistring

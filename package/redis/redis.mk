@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-REDIS_VERSION = 4.0.9
+REDIS_VERSION = 3.2.11
 REDIS_SITE = http://download.redis.io/releases
 REDIS_LICENSE = BSD-3-Clause (core); MIT and BSD family licenses (Bundled components)
 REDIS_LICENSE_FILES = COPYING
@@ -28,8 +28,7 @@ endif
 # https://github.com/antirez/redis/pull/609).  We set PREFIX
 # instead.
 REDIS_BUILDOPTS = $(TARGET_CONFIGURE_OPTS) \
-	PREFIX=$(TARGET_DIR)/usr MALLOC=libc \
-	CFLAGS=-mieee
+	PREFIX=$(TARGET_DIR)/usr MALLOC=libc
 
 define REDIS_BUILD_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) $(REDIS_BUILDOPTS) -C $(@D)
@@ -38,9 +37,8 @@ endef
 define REDIS_INSTALL_TARGET_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) $(REDIS_BUILDOPTS) -C $(@D) \
 		LDCONFIG=true install
-	$(INSTALL) -D -m 0640 $(@D)/redis.conf \
+	$(INSTALL) -D -m 0644 $(@D)/redis.conf \
 		$(TARGET_DIR)/etc/redis.conf
-	$(INSTALL) -d -m 0750 $(TARGET_DIR)/var/{lib,log,run}/redis
 endef
 
 define REDIS_INSTALL_INIT_SYSV

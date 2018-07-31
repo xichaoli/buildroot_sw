@@ -87,9 +87,9 @@ all:
 .PHONY: all
 
 # Set and export the version string
-export BR2_VERSION := 2018.05-git
+export BR2_VERSION := 2018.02.4
 # Actual time the release is cut (for reproducible builds)
-BR2_VERSION_EPOCH = 1523310000
+BR2_VERSION_EPOCH = 1532126000
 
 # Save running make version since it's clobbered by the make package
 RUNNING_MAKE_VERSION := $(MAKE_VERSION)
@@ -769,6 +769,8 @@ endif
 	@$(foreach s, $(call qstrip,$(BR2_ROOTFS_POST_BUILD_SCRIPT)), \
 		$(call MESSAGE,"Executing post-build script $(s)"); \
 		$(EXTRA_ENV) $(s) $(TARGET_DIR) $(call qstrip,$(BR2_ROOTFS_POST_SCRIPT_ARGS))$(sep))
+
+	touch $(TARGET_DIR)/usr
 
 .PHONY: target-post-image
 target-post-image: $(TARGETS_ROOTFS) target-finalize

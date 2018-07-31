@@ -3,6 +3,8 @@ sha256 5a475278b2db73aa7fa7f3ba6d98d8d72774f5c77e172495007d79f91d09daa3 qtwaylan
 
 # Hash from: https://download.qt.io/official_releases/qt/5.10/5.10.1/submodules/qtwayland-everywhere-src-5.10.1.tar.xz.mirrorlist
 sha256 f5a7643a5ebcdc50d02b293191e675f387f67dc360c27bf6f94345372fba6356  qtwayland-everywhere-src-5.10.1.tar.xz
+# Hash from: https://download.qt.io/official_releases/qt/5.9/5.9.6/submodules/qtwayland-opensource-src-5.9.6.tar.xz.mirrorlist
+sha256 6dd066b1ab518b16dc2bebc4b3629528a30161cfce48ce5d8482c67a570667d8  qtwayland-opensource-src-5.9.6.tar.xz
 
 # Hashes for license files:
 sha256 8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643 LICENSE.GPL2
